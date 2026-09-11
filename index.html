@@ -247,21 +247,22 @@
   </div>
 
   <div class="pf-meta">
-    <div class="pf-grid pf-grid-4" style="margin-bottom:10px;">
+    <div class="pf-grid pf-grid-3" style="margin-bottom:10px;">
       <div class="pf-field">
         <div class="pf-label">Rep</div>
         <select class="pf-input" id="meta-rep" onchange="document.getElementById('meta-rep-other').style.display = this.value === 'Other' ? 'block' : 'none';">
           <option value="">— Select —</option>
+          <option>Kevin Morkin</option>
           <option>Corey Dunteman</option>
+          <option>Steve Sprehe</option>
           <option>Dan Wilson</option>
-          <option>Sebastian Parchomenko</option>
           <option>Steve Schechtman</option>
+          <option>Jeff Parchomenko</option>
           <option>Wally Lang</option>
           <option value="Other">Other</option>
         </select>
         <input class="pf-input" type="text" id="meta-rep-other" placeholder="Rep name" style="display:none; margin-top:4px;">
       </div>
-      <div class="pf-field"><div class="pf-label">Manager</div><input class="pf-input" type="text" id="meta-manager" placeholder="Manager name"></div>
       <div class="pf-field"><div class="pf-label">Meeting Date</div><input class="pf-input" type="date" id="meta-date"></div>
       <div class="pf-field"><div class="pf-label">Week / Period Covered</div><input class="pf-input" type="text" id="meta-week" placeholder="e.g. Sept 8–12"></div>
     </div>
