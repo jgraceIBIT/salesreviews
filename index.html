@@ -242,12 +242,12 @@
     </div>
     <div>
       <div class="pf-title">Weekly 1:1 Sales Review</div>
-      <div class="pf-title-sub">Forecast · Prospects · Growth · Vendor Teaming · Goals</div>
+      <div class="pf-title-sub">Prospects · Growth · Vendor Teaming · Goals · Coaching</div>
     </div>
   </div>
 
   <div class="pf-meta">
-    <div class="pf-grid pf-grid-3" style="margin-bottom:10px;">
+    <div class="pf-grid pf-grid-3">
       <div class="pf-field">
         <div class="pf-label">Rep</div>
         <select class="pf-input" id="meta-rep" onchange="document.getElementById('meta-rep-other').style.display = this.value === 'Other' ? 'block' : 'none';">
@@ -266,75 +266,27 @@
       <div class="pf-field"><div class="pf-label">Meeting Date</div><input class="pf-input" type="date" id="meta-date"></div>
       <div class="pf-field"><div class="pf-label">Week / Period Covered</div><input class="pf-input" type="text" id="meta-week" placeholder="e.g. Sept 8–12"></div>
     </div>
-    <div class="pf-grid pf-grid-4">
-      <div class="pf-field"><div class="pf-label">Quota (Period)</div><input class="pf-input" type="text" inputmode="decimal" id="meta-quota" placeholder="$" oninput="recalcMeta()"></div>
-      <div class="pf-field"><div class="pf-label">Closed to Date</div><input class="pf-input" type="text" inputmode="decimal" id="meta-closed" placeholder="$" oninput="recalcMeta()"></div>
-      <div class="pf-field"><div class="pf-label">% to Goal (auto)</div><input class="pf-input" type="text" id="meta-pct-goal" readonly></div>
-      <div class="pf-field"><div class="pf-label">Gap to Goal (auto)</div><input class="pf-input" type="text" id="meta-gap-goal" readonly></div>
-    </div>
   </div>
 
   <div class="pf-body">
 
-    <!-- 1. Forecast Review by Stage -->
+    <!-- 1. Top 3 Prospects -->
     <div class="pf-section">
-      <div class="pf-section-header"><div class="pf-section-num">1</div><div class="pf-section-title">Forecast Review by Stage</div></div>
+      <div class="pf-section-header"><div class="pf-section-num">1</div><div class="pf-section-title">Top 3 Prospects for Conversion</div><div style="margin-left:auto;font-size:10px;font-weight:600;letter-spacing:0.8px;color:#fff;background:#3cb878;padding:3px 9px;border-radius:10px;text-transform:uppercase;">Quarterly</div></div>
       <table class="pf-table">
-        <thead><tr><th style="width:20%">Stage</th><th># Opps</th><th>Pipeline $</th><th>Weighted $</th><th>Change vs. Last Week</th><th>Closing This Period</th></tr></thead>
-        <tbody id="forecast-stage-body"></tbody>
-      </table>
-
-      <div class="pf-subsection-title">Forecast Call</div>
-      <table class="pf-table">
-        <thead><tr><th style="width:20%">Category</th><th style="width:15%">Amount</th><th style="width:15%">Confidence</th><th>Notes</th></tr></thead>
-        <tbody id="forecast-call-body"></tbody>
-      </table>
-
-      <div class="pf-subsection-title">Coverage Check</div>
-      <div class="pf-grid pf-grid-3">
-        <div class="pf-field"><div class="pf-label">Pipeline Coverage Ratio (auto)</div><input class="pf-input" type="text" id="cov-ratio" readonly></div>
-        <div class="pf-field"><div class="pf-label">Gap to Goal (auto)</div><input class="pf-input" type="text" id="cov-gap-display" readonly></div>
-      </div>
-      <div class="pf-field" style="margin-top:4px;"><div class="pf-label">Where does the gap get closed from?</div><textarea class="pf-textarea" id="cov-close-from"></textarea></div>
-
-      <div class="pf-subsection-title">Stage Hygiene</div>
-      <div class="pf-hygiene-row">
-        <label><input type="checkbox" id="hy-stale"> Any deal in the same stage 30+ days?</label>
-        <input type="text" class="pf-input" id="hy-stale-which" placeholder="Which and why">
-      </div>
-      <div class="pf-hygiene-row">
-        <label><input type="checkbox" id="hy-pushed"> Any close date pushed twice or more?</label>
-        <input type="text" class="pf-input" id="hy-pushed-which" placeholder="Which">
-      </div>
-      <div class="pf-hygiene-row">
-        <label><input type="checkbox" id="hy-noactivity"> Any deal with no activity in 14 days?</label>
-        <input type="text" class="pf-input" id="hy-noactivity-which" placeholder="Which">
-      </div>
-      <div class="pf-hygiene-row">
-        <label><input type="checkbox" id="hy-singlethread"> Any single-thread deal (one contact only)?</label>
-        <input type="text" class="pf-input" id="hy-singlethread-which" placeholder="Which">
-      </div>
-    </div>
-
-    <div class="pf-divider"></div>
-
-    <!-- 2. Top 3 Prospects -->
-    <div class="pf-section">
-      <div class="pf-section-header"><div class="pf-section-num">2</div><div class="pf-section-title">Top 3 Prospects for Conversion</div></div>
-      <table class="pf-table">
-        <thead><tr><th style="width:24px">#</th><th>Account</th><th>Value</th><th>Stage</th><th>Close Date</th><th>Decision Maker</th><th>Next Step</th><th>Step Date</th></tr></thead>
+        <thead><tr><th style="width:24px">#</th><th style="width:26%">Prospect Account</th><th style="width:24%">Decision Maker</th><th>Keys to Converting</th></tr></thead>
         <tbody id="top-prospects-body"></tbody>
       </table>
 
-      <div class="pf-subsection-title">Deal Deep Dive <span style="font-weight:400;color:#8a95a3;font-size:11px;text-transform:none;letter-spacing:0;">— top 3 priority deals</span></div>
+      <div class="pf-subsection-title">Conversion Deep Dive <span style="font-weight:400;color:#8a95a3;font-size:11px;text-transform:none;letter-spacing:0;">— the 3 accounts above</span></div>
       <div id="deal-deep-dive-body"></div>
     </div>
 
     <div class="pf-divider"></div>
 
-    <!-- 3. Customer Growth -->
+    <!-- 2. Customer Growth -->
     <div class="pf-section">
-      <div class="pf-section-header"><div class="pf-section-num">3</div><div class="pf-section-title">Top Customer Growth &amp; Deeper Penetration</div></div>
+      <div class="pf-section-header"><div class="pf-section-num">2</div><div class="pf-section-title">Top Customer Growth &amp; Deeper Penetration</div></div>
       <div class="pf-field" style="margin-bottom:10px;"><div class="pf-label">Account Under Review</div><input class="pf-input" type="text" id="cg-account"></div>
       <table class="pf-table">
         <thead><tr><th style="width:28%">Metric</th><th>Current</th><th>Prior Period</th><th>Target</th></tr></thead>
@@ -347,7 +299,7 @@
         <tbody id="whitespace-body"></tbody>
       </table>
 
-      <div class="pf-subsection-title">Relationship Health</div>
+      <div class="pf-subsection-title">Your Current Relationship</div>
       <div class="pf-grid pf-grid-2">
         <div class="pf-field"><div class="pf-label">Executive Sponsor</div><input class="pf-input" type="text" id="rh-sponsor"></div>
         <div class="pf-field"><div class="pf-label">Last Exec-Level Touch</div><input class="pf-input" type="text" id="rh-lasttouch"></div>
@@ -365,9 +317,9 @@
 
     <div class="pf-divider"></div>
 
-    <!-- 4. Vendor and Partner Teaming -->
+    <!-- 3. Vendor and Partner Teaming -->
     <div class="pf-section">
-      <div class="pf-section-header"><div class="pf-section-num">4</div><div class="pf-section-title">Vendor and Partner Teaming</div></div>
+      <div class="pf-section-header"><div class="pf-section-num">3</div><div class="pf-section-title">Vendor and Partner Teaming</div></div>
       <table class="pf-table">
         <thead><tr><th style="width:16%">Vendor / Partner</th><th style="width:14%">Their Rep</th><th>Deals We Are Teaming On</th><th style="width:12%">$ Influenced</th><th style="width:12%">Last Touch</th><th style="width:14%">Next Joint Activity</th></tr></thead>
         <tbody id="vendor-teaming-body"></tbody>
@@ -394,9 +346,9 @@
 
     <div class="pf-divider"></div>
 
-    <!-- 5. Weekly Goals -->
+    <!-- 4. Weekly Goals -->
     <div class="pf-section">
-      <div class="pf-section-header"><div class="pf-section-num">5</div><div class="pf-section-title">Weekly Goals</div></div>
+      <div class="pf-section-header"><div class="pf-section-num">4</div><div class="pf-section-title">Weekly Goals</div></div>
 
       <div class="pf-subsection-title">Last Week's Goals: Results</div>
       <table class="pf-table">
@@ -419,9 +371,9 @@
 
     <div class="pf-divider"></div>
 
-    <!-- 6. Big Accomplishments -->
+    <!-- 5. Big Accomplishments -->
     <div class="pf-section">
-      <div class="pf-section-header"><div class="pf-section-num">6</div><div class="pf-section-title">Big Accomplishments This Week</div></div>
+      <div class="pf-section-header"><div class="pf-section-num">5</div><div class="pf-section-title">Big Accomplishments This Week</div></div>
       <div class="pf-grid" style="grid-template-columns:1fr;">
         <div class="pf-field"><div class="pf-label">1</div><input class="pf-input" type="text" id="ba-1"></div>
         <div class="pf-field"><div class="pf-label">2</div><input class="pf-input" type="text" id="ba-2"></div>
@@ -432,9 +384,9 @@
 
     <div class="pf-divider"></div>
 
-    <!-- 7. Blockers, Coaching, Actions -->
+    <!-- 6. Blockers, Coaching, Actions -->
     <div class="pf-section">
-      <div class="pf-section-header"><div class="pf-section-num">7</div><div class="pf-section-title">Blockers, Coaching, and Actions</div></div>
+      <div class="pf-section-header"><div class="pf-section-num">6</div><div class="pf-section-title">Blockers, Coaching, and Actions</div></div>
 
       <div class="pf-grid pf-grid-2">
         <div class="pf-field"><div class="pf-label">Blockers or Obstacles</div><textarea class="pf-textarea" id="bl-blockers"></textarea></div>
@@ -444,20 +396,16 @@
       <div class="pf-subsection-title">Coaching Focus This Week</div>
       <div class="pf-grid pf-grid-3">
         <div class="pf-field"><div class="pf-label">Skill or Behavior to Work On</div><textarea class="pf-textarea" id="co-skill"></textarea></div>
-        <div class="pf-field"><div class="pf-label">How We Will Practice It</div><textarea class="pf-textarea" id="co-practice"></textarea></div>
-        <div class="pf-field"><div class="pf-label">How We Will Know It Improved</div><textarea class="pf-textarea" id="co-know"></textarea></div>
+        <div class="pf-field"><div class="pf-label">How I Will Practice It</div><textarea class="pf-textarea" id="co-practice"></textarea></div>
+        <div class="pf-field"><div class="pf-label">How I Will Know It Improved</div><textarea class="pf-textarea" id="co-know"></textarea></div>
       </div>
 
       <div class="pf-subsection-title">Action Items</div>
       <table class="pf-table">
-        <thead><tr><th style="width:24px">#</th><th>Action</th><th style="width:16%">Owner</th><th style="width:14%">Due Date</th><th style="width:16%">Status</th></tr></thead>
+        <thead><tr><th style="width:24px">#</th><th>Action</th><th style="width:16%">Due Date</th><th style="width:18%">Status</th></tr></thead>
         <tbody id="action-items-body"></tbody>
       </table>
 
-      <div class="pf-grid pf-grid-2" style="margin-top:6px;">
-        <div class="pf-field"><div class="pf-label">Manager's Notes</div><textarea class="pf-textarea" id="mgr-notes"></textarea></div>
-        <div class="pf-field"><div class="pf-label">Rep Notes</div><textarea class="pf-textarea" id="rep-notes"></textarea></div>
-      </div>
       <div class="pf-field" style="max-width:220px; margin-top:6px;"><div class="pf-label">Next 1:1 Date</div><input class="pf-input" type="date" id="next-1on1"></div>
     </div>
 
@@ -494,92 +442,7 @@
     setTimeout(() => t.classList.remove('show'), duration);
   }
 
-  /* ---------- Section 1: Forecast Review by Stage ---------- */
-  const stages = [
-    { id: 'qualify', label: 'Qualify / Discovery' },
-    { id: 'demo', label: 'Solution / Demo' },
-    { id: 'proposal', label: 'Proposal / Quote' },
-    { id: 'negotiation', label: 'Negotiation' },
-    { id: 'verbal', label: 'Verbal / Pending PO' }
-  ];
-  (function buildForecastStageTable() {
-    const body = document.getElementById('forecast-stage-body');
-    stages.forEach(s => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td class="row-label">${s.label}</td>
-        <td><input type="text" inputmode="decimal" id="fs-${s.id}-opps" oninput="recalcForecastTotal()"></td>
-        <td><input type="text" inputmode="decimal" id="fs-${s.id}-pipeline" oninput="recalcForecastTotal()" placeholder="$"></td>
-        <td><input type="text" inputmode="decimal" id="fs-${s.id}-weighted" oninput="recalcForecastTotal()" placeholder="$"></td>
-        <td><input type="text" id="fs-${s.id}-change"></td>
-        <td><input type="text" id="fs-${s.id}-closing"></td>`;
-      body.appendChild(tr);
-    });
-    const totalTr = document.createElement('tr');
-    totalTr.innerHTML = `
-      <td class="row-label" style="font-weight:700;">TOTAL</td>
-      <td><input type="text" id="fs-total-opps" readonly></td>
-      <td><input type="text" id="fs-total-pipeline" readonly></td>
-      <td><input type="text" id="fs-total-weighted" readonly></td>
-      <td></td><td></td>`;
-    body.appendChild(totalTr);
-  })();
-
-  function recalcForecastTotal() {
-    let opps = 0, pipeline = 0, weighted = 0;
-    stages.forEach(s => {
-      opps += num(`fs-${s.id}-opps`);
-      pipeline += num(`fs-${s.id}-pipeline`);
-      weighted += num(`fs-${s.id}-weighted`);
-    });
-    document.getElementById('fs-total-opps').value = opps || '';
-    document.getElementById('fs-total-pipeline').value = pipeline ? '$' + pipeline.toLocaleString() : '';
-    document.getElementById('fs-total-weighted').value = weighted ? '$' + weighted.toLocaleString() : '';
-    recalcCoverage();
-  }
-
-  /* ---------- Forecast Call ---------- */
-  const forecastCats = [
-    { id: 'commit', label: 'Commit' },
-    { id: 'best', label: 'Best Case' },
-    { id: 'pipeline', label: 'Pipeline / Upside' }
-  ];
-  (function buildForecastCallTable() {
-    const body = document.getElementById('forecast-call-body');
-    forecastCats.forEach(c => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td class="row-label">${c.label}</td>
-        <td><input type="text" inputmode="decimal" id="fc-${c.id}-amount" placeholder="$"></td>
-        <td>
-          <select id="fc-${c.id}-confidence">
-            <option value="">—</option><option>High</option><option>Medium</option><option>Low</option>
-          </select>
-        </td>
-        <td><input type="text" id="fc-${c.id}-notes"></td>`;
-      body.appendChild(tr);
-    });
-  })();
-
-  /* ---------- Meta / Coverage auto-calc ---------- */
-  function recalcMeta() {
-    const quota = num('meta-quota');
-    const closed = num('meta-closed');
-    const gap = quota - closed;
-    const pct = quota > 0 ? (closed / quota * 100) : null;
-    document.getElementById('meta-pct-goal').value = pct !== null ? pct.toFixed(1) + '%' : '';
-    document.getElementById('meta-gap-goal').value = quota > 0 ? '$' + gap.toLocaleString() : '';
-    document.getElementById('cov-gap-display').value = document.getElementById('meta-gap-goal').value;
-    recalcCoverage();
-  }
-  function recalcCoverage() {
-    const pipeline = num('fs-total-pipeline');
-    const gap = num('meta-gap-goal');
-    const ratio = gap > 0 ? (pipeline / gap) : 0;
-    document.getElementById('cov-ratio').value = gap > 0 ? ratio.toFixed(2) + 'x' : '';
-  }
-
-  /* ---------- Section 2: Top 3 Prospects ---------- */
+  /* ---------- Section 1: Top 3 Prospects ---------- */
   (function buildTopProspects() {
     const body = document.getElementById('top-prospects-body');
     for (let i = 1; i <= 3; i++) {
@@ -587,28 +450,21 @@
       tr.innerHTML = `
         <td class="num-cell">${i}</td>
         <td><input type="text" id="tp-${i}-account"></td>
-        <td><input type="text" id="tp-${i}-value" placeholder="$"></td>
-        <td><input type="text" id="tp-${i}-stage"></td>
-        <td><input type="date" id="tp-${i}-closedate"></td>
         <td><input type="text" id="tp-${i}-dm"></td>
-        <td><input type="text" id="tp-${i}-nextstep"></td>
-        <td><input type="date" id="tp-${i}-stepdate"></td>`;
+        <td><input type="text" id="tp-${i}-keystoconverting"></td>`;
       body.appendChild(tr);
     }
   })();
 
   /* ---------- Deal Deep Dive (3 priority deals) ---------- */
-  (function buildDealDeepDive() {
+  (function buildConversionDeepDive() {
     const container = document.getElementById('deal-deep-dive-body');
     for (let n = 1; n <= 3; n++) {
       const block = document.createElement('div');
       block.className = 'pf-deal-block';
       block.innerHTML = `
-        <div class="pf-deal-block-title">Deal ${n}</div>
-        <div class="pf-grid pf-grid-2" style="margin-bottom:8px;">
-          <div class="pf-field"><div class="pf-label">Account</div><input class="pf-input" type="text" id="dd-${n}-account"></div>
-          <div class="pf-field"><div class="pf-label">Value</div><input class="pf-input" type="text" id="dd-${n}-value" placeholder="$"></div>
-        </div>
+        <div class="pf-deal-block-title">Prospect ${n}</div>
+        <div class="pf-field" style="margin-bottom:8px;"><div class="pf-label">Prospect Account</div><input class="pf-input" type="text" id="dd-${n}-account"></div>
         <div class="pf-grid pf-grid-2" style="margin-bottom:8px;">
           <div class="pf-field"><div class="pf-label">Compelling Event / Why Now</div><textarea class="pf-textarea" id="dd-${n}-compelling"></textarea></div>
           <div class="pf-field"><div class="pf-label">Business Pain Being Solved</div><textarea class="pf-textarea" id="dd-${n}-pain"></textarea></div>
@@ -630,18 +486,18 @@
           </div>
         </div>
         <div class="pf-grid pf-grid-2" style="margin-bottom:8px;">
-          <div class="pf-field"><div class="pf-label">Competition in the Deal</div><textarea class="pf-textarea" id="dd-${n}-competition"></textarea></div>
+          <div class="pf-field"><div class="pf-label">Current Provider / Competition</div><textarea class="pf-textarea" id="dd-${n}-competition"></textarea></div>
           <div class="pf-field"><div class="pf-label">Known Objections or Risks</div><textarea class="pf-textarea" id="dd-${n}-objections"></textarea></div>
         </div>
         <div class="pf-grid pf-grid-2">
-          <div class="pf-field"><div class="pf-label">What Must Be True This Week to Advance It</div><textarea class="pf-textarea" id="dd-${n}-mustbetrue"></textarea></div>
+          <div class="pf-field"><div class="pf-label">What Must Be True This Quarter to Convert Them</div><textarea class="pf-textarea" id="dd-${n}-mustbetrue"></textarea></div>
           <div class="pf-field"><div class="pf-label">Manager Help Needed</div><textarea class="pf-textarea" id="dd-${n}-managerhelp"></textarea></div>
         </div>`;
       container.appendChild(block);
     }
   })();
 
-  /* ---------- Section 3: Customer Growth ---------- */
+  /* ---------- Section 2: Customer Growth ---------- */
   const growthMetrics = [
     { id: 'revenue', label: 'Revenue' },
     { id: 'margin', label: 'Margin' },
@@ -676,7 +532,7 @@
     }
   })();
 
-  /* ---------- Section 4: Vendor and Partner Teaming ---------- */
+  /* ---------- Section 3: Vendor and Partner Teaming ---------- */
   (function buildVendorTeaming() {
     const body = document.getElementById('vendor-teaming-body');
     for (let i = 1; i <= 4; i++) {
@@ -692,7 +548,7 @@
     }
   })();
 
-  /* ---------- Section 5: Weekly Goals ---------- */
+  /* ---------- Section 4: Weekly Goals ---------- */
   (function buildLastWeekGoals() {
     const body = document.getElementById('last-week-goals-body');
     for (let i = 1; i <= 4; i++) {
@@ -742,7 +598,7 @@
     }
   })();
 
-  /* ---------- Section 7: Action Items ---------- */
+  /* ---------- Section 6: Action Items ---------- */
   (function buildActionItems() {
     const body = document.getElementById('action-items-body');
     for (let i = 1; i <= 5; i++) {
@@ -750,7 +606,6 @@
       tr.innerHTML = `
         <td class="num-cell">${i}</td>
         <td><input type="text" id="ai-${i}-action"></td>
-        <td><input type="text" id="ai-${i}-owner"></td>
         <td><input type="date" id="ai-${i}-due"></td>
         <td>
           <select id="ai-${i}-status">
@@ -776,7 +631,6 @@
       if (el.type === 'checkbox') el.checked = !!data[id]; else el.value = data[id];
     });
     if (val('meta-rep') === 'Other') document.getElementById('meta-rep-other').style.display = 'block';
-    recalcMeta(); recalcForecastTotal();
   }
 
   function saveForm() {
@@ -818,7 +672,6 @@
     });
     document.getElementById('meta-rep-other').style.display = 'none';
     document.getElementById('meta-date').value = new Date().toISOString().split('T')[0];
-    recalcMeta(); recalcForecastTotal();
     const status = document.getElementById('toolbar-status');
     status.textContent = 'New form started'; status.className = 'pf-toolbar-status';
     showToast('Form cleared — ready for new entry');
@@ -853,7 +706,6 @@
     setTimeout(() => { restoreTextareas(); document.title = originalTitle; }, 800);
   }
 
-  recalcMeta();
 </script>
 </body>
 </html>
