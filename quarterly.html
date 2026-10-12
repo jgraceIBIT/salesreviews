@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quarterly Sales Review | In Balance IT Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 15px;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+  }
+
+  .page-wrap { max-width: 980px; margin: 0 auto; }
+
+  /* Header */
+  .pf-header {
+    background: #0a2240;
+    padding: 1.75rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px 10px 0 0;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .pf-logo { font-family: 'Bitter', serif; font-size: 22px; font-weight: 600; color: #fff; line-height: 1.2; }
+  .pf-logo span { color: #3cb878; }
+  .pf-logo-sub {
+    font-family: 'Source Sans 3', sans-serif; font-size: 11px; font-weight: 400;
+    color: rgba(255,255,255,0.5); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 3px;
+  }
+  .pf-title { font-family: 'Bitter', serif; font-size: 20px; font-weight: 500; color: #fff; text-align: right; }
+  .pf-title-sub {
+    font-family: 'Source Sans 3', sans-serif; font-size: 11px; color: rgba(255,255,255,0.45);
+    letter-spacing: 1px; text-transform: uppercase; margin-top: 3px; text-align: right;
+  }
+
+  /* Meta bar */
+  .pf-meta {
+    background: #e8ecf0;
+    padding: 1.1rem 2.5rem;
+    border-left: 1px solid #d0d5db;
+    border-right: 1px solid #d0d5db;
+  }
+
+  /* Body */
+  .pf-body {
+    background: #fff;
+    border: 1px solid #d0d5db;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    padding-bottom: 2rem;
+  }
+
+  .pf-section { padding: 1.5rem 2.5rem 0; }
+
+  .pf-section-header {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 1rem;
+    padding-bottom: 0.6rem; border-bottom: 2px solid #0a2240;
+  }
+  .pf-section-num {
+    background: #0a2240; color: #fff; font-size: 11px; font-weight: 600;
+    width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0; font-family: 'Bitter', serif;
+  }
+  .pf-section-title { font-family: 'Bitter', serif; font-size: 15px; font-weight: 600; color: #0a2240; letter-spacing: 0.2px; }
+
+  .pf-subsection-title {
+    font-family: 'Bitter', serif; font-size: 13px; font-weight: 600; color: #0a2240;
+    margin: 1.1rem 0 0.6rem; padding-left: 9px; border-left: 3px solid #3cb878;
+  }
+
+  .pf-grid { display: grid; gap: 10px; margin-bottom: 10px; }
+  .pf-grid-2 { grid-template-columns: 1fr 1fr; }
+  .pf-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .pf-grid-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+  .pf-field { display: flex; flex-direction: column; gap: 4px; }
+  .pf-label { font-size: 10.5px; font-weight: 600; color: #6b7685; text-transform: uppercase; letter-spacing: 0.6px; }
+  .pf-input, select.pf-input {
+    font-family: 'Source Sans 3', sans-serif; font-size: 14px; border: 1px solid #d0d5db; border-radius: 6px;
+    padding: 7px 10px; background: #fafbfc; color: #1a1a2e; width: 100%; outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  select.pf-input { cursor: pointer; }
+  .pf-input:focus { border-color: #3cb878; background: #fff; box-shadow: 0 0 0 3px rgba(60,184,120,0.12); }
+  .pf-input[readonly] { background: #eef1f4; color: #45505f; font-weight: 600; cursor: default; }
+  .pf-textarea {
+    font-family: 'Source Sans 3', sans-serif; font-size: 14px; border: 1px solid #d0d5db; border-radius: 6px;
+    padding: 7px 10px; background: #fafbfc; color: #1a1a2e; width: 100%; outline: none; resize: vertical;
+    min-height: 60px; line-height: 1.5; transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .pf-textarea:focus { border-color: #3cb878; background: #fff; box-shadow: 0 0 0 3px rgba(60,184,120,0.12); }
+
+  .pf-table {
+    width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 6px;
+    border: 1px solid #d0d5db; border-radius: 8px; overflow: hidden;
+  }
+  .pf-table th {
+    background: #0a2240; color: #fff; padding: 8px 8px; text-align: left; font-weight: 500;
+    font-size: 10.5px; letter-spacing: 0.3px;
+  }
+  .pf-table td { padding: 3px 4px; border-bottom: 1px solid #e8ecf0; vertical-align: middle; }
+  .pf-table tr:last-child td { border-bottom: none; }
+  .pf-table tr:nth-child(even) td { background: #fafbfc; }
+  .pf-table .row-label {
+    color: #5a6472; font-weight: 500; padding: 6px 10px; white-space: nowrap;
+    background: #f4f6f8; border-right: 1px solid #e0e4e8; font-size: 12px;
+  }
+  .pf-table input, .pf-table select {
+    font-family: 'Source Sans 3', sans-serif; font-size: 13px; border: none; background: transparent;
+    padding: 5px 6px; color: #1a1a2e; width: 100%; outline: none;
+  }
+  .pf-table input:focus, .pf-table select:focus { background: #f0faf5; border-radius: 4px; }
+  .pf-table input[readonly] { color: #45505f; font-weight: 600; }
+  .pf-table select { cursor: pointer; }
+  .pf-table .num-cell { width: 30px; text-align: center; color: #8a95a3; font-weight: 600; font-size: 12px; }
+
+  .pf-hygiene-row { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; flex-wrap: wrap; }
+  .pf-hygiene-row label { display: flex; align-items: center; gap: 7px; font-size: 13.5px; min-width: 300px; cursor: pointer; }
+  .pf-hygiene-row input[type="checkbox"] { width: 16px; height: 16px; accent-color: #3cb878; cursor: pointer; flex-shrink: 0; }
+  .pf-hygiene-row input[type="text"] { flex: 1; min-width: 200px; }
+
+  .pf-deal-block { border: 1px solid #d0d5db; border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1rem; background: #fafbfc; }
+  .pf-deal-block-title {
+    font-family: 'Bitter', serif; font-size: 13px; font-weight: 600; color: #fff; margin: -1rem -1.25rem 1rem;
+    padding: 8px 1.25rem; background: #0a2240; border-radius: 8px 8px 0 0;
+  }
+
+  .pf-yn-row { display: flex; align-items: center; gap: 10px; }
+  .pf-yn-row select { max-width: 110px; }
+
+  .pf-divider { height: 1px; background: #e8ecf0; margin: 1.5rem 0 0; }
+
+  .pf-submit-bar { padding: 1.5rem 2.5rem 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .pf-confidential { font-size: 11px; color: #8a95a3; letter-spacing: 0.3px; }
+
+  .pf-btn {
+    font-family: 'Source Sans 3', sans-serif; font-size: 14px; font-weight: 600; background: #0a2240; color: #fff;
+    border: none; border-radius: 6px; padding: 11px 32px; cursor: pointer; letter-spacing: 0.4px;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .pf-btn:hover { background: #3cb878; }
+  .pf-btn:active { transform: scale(0.98); }
+  .pf-btn:disabled { background: #b0b8c4; cursor: default; }
+
+  .pf-note { text-align: center; font-size: 12px; color: #8a95a3; margin-top: 1rem; }
+
+  .pf-toolbar {
+    background: #fff; border: 1px solid #d0d5db; border-radius: 10px; padding: 0.65rem 1.25rem;
+    display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem; gap: 1rem; flex-wrap: wrap;
+  }
+  .pf-toolbar-left { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+  .pf-toolbar-status { font-size: 12px; color: #8a95a3; font-style: italic; }
+  .pf-toolbar-status.saved { color: #3cb878; font-style: normal; font-weight: 500; }
+  .pf-toolbar-status.loaded { color: #0a6db8; font-style: normal; font-weight: 500; }
+  .pf-toolbar-status.submitted { color: #3cb878; font-style: normal; font-weight: 600; }
+  .pf-tbtn {
+    font-family: 'Source Sans 3', sans-serif; font-size: 12.5px; font-weight: 600; border-radius: 6px;
+    padding: 6px 14px; cursor: pointer; letter-spacing: 0.2px; transition: all 0.15s; white-space: nowrap;
+  }
+  .pf-tbtn-outline { background: transparent; color: #0a2240; border: 1px solid #c0c8d4; }
+  .pf-tbtn-outline:hover { background: #f0f2f5; border-color: #0a2240; }
+  .pf-tbtn-green { background: #3cb878; color: #fff; border: 1px solid #3cb878; }
+  .pf-tbtn-green:hover { background: #2ea366; }
+  .pf-tbtn-danger { background: transparent; color: #b94040; border: 1px solid #e0bcbc; }
+  .pf-tbtn-danger:hover { background: #fdf0f0; border-color: #b94040; }
+
+  .pf-toast {
+    position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: #0a2240; color: #fff; font-family: 'Source Sans 3', sans-serif; font-size: 13px; font-weight: 500;
+    padding: 10px 20px; border-radius: 8px; opacity: 0; transition: opacity 0.25s, transform 0.25s;
+    pointer-events: none; z-index: 9999; max-width: 90vw; text-align: center;
+  }
+  .pf-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  @media print {
+    body { background: #fff; padding: 0; font-size: 11.5px; }
+    .page-wrap { max-width: 100%; }
+    .pf-btn, .pf-toolbar, .pf-note { display: none !important; }
+    .pf-header { border-radius: 0; padding: 1rem 1.25rem; }
+    .pf-body { border: none; }
+    .pf-section { padding: 0.9rem 1.25rem 0; break-inside: auto; }
+    .pf-meta { padding: 0.9rem 1.25rem; }
+
+    /* Keep tables and deal blocks from splitting awkwardly */
+    .pf-deal-block, .pf-table, .pf-section-header { break-inside: avoid; page-break-inside: avoid; }
+    .pf-section-header { break-after: avoid; }
+
+    /* Flatten input chrome so it reads as a document, not a form */
+    .pf-input, .pf-textarea, .pf-table input, .pf-table select, select.pf-input {
+      border: none !important; border-bottom: 1px solid #d0d5db !important;
+      background: transparent !important; box-shadow: none !important;
+      border-radius: 0 !important; padding: 2px 3px !important;
+      -webkit-appearance: none; appearance: none;
+      color: #1a1a2e !important; font-weight: 500;
+    }
+    .pf-table input, .pf-table select { border-bottom: none !important; }
+    .pf-input[readonly] { background: transparent !important; }
+
+    /* Textareas must show all content, not a scrollbox */
+    .pf-textarea { min-height: 0 !important; height: auto !important; overflow: visible !important; resize: none; }
+
+    /* Force the navy/green to actually print */
+    .pf-header, .pf-table th, .pf-section-num, .pf-deal-block-title {
+      -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important;
+    }
+    @page { margin: 0.4in; }
+  }
+  @media (max-width: 720px) {
+    .pf-grid-2, .pf-grid-3, .pf-grid-4 { grid-template-columns: 1fr 1fr; }
+    .pf-header, .pf-meta, .pf-section { padding-left: 1.25rem; padding-right: 1.25rem; }
+  }
+
+  /* Instructions panel */
+  .ib-howto { background:#fff; border:1px solid #d0d5db; border-left:5px solid #3cb878; border-radius:10px; margin-bottom:0.9rem; }
+  .ib-howto summary { cursor:pointer; list-style:none; padding:1rem 1.5rem; font-family:'Bitter',serif; font-size:16px; font-weight:600; color:#0a2240; display:flex; justify-content:space-between; align-items:center; }
+  .ib-howto summary::-webkit-details-marker { display:none; }
+  .ib-howto summary .ib-toggle { font-family:'Source Sans 3',sans-serif; font-size:13px; font-weight:600; color:#2e8a5c; }
+  .ib-howto[open] summary .ib-show { display:none; }
+  .ib-howto:not([open]) summary .ib-hide { display:none; }
+  .ib-howto summary:focus-visible { outline:3px solid #3cb878; outline-offset:2px; border-radius:8px; }
+  .ib-steps { list-style:none; counter-reset:step; padding:0 1.5rem 1.25rem; margin:0; }
+  .ib-steps li { counter-increment:step; position:relative; padding:0.75rem 0 0.75rem 2.6rem; border-top:1px solid #e8ecf0; line-height:1.55; font-size:14.5px; }
+  .ib-steps li::before { content:counter(step); position:absolute; left:0; top:0.8rem; width:28px; height:28px; border-radius:50%; background:#0a2240; color:#fff; font-family:'Bitter',serif; font-weight:600; font-size:13px; display:flex; align-items:center; justify-content:center; }
+  .ib-steps strong.ib-step-title { display:block; font-size:15px; color:#0a2240; margin-bottom:2px; }
+  .ib-steps .ib-os { margin-top:6px; padding:8px 12px; background:#f4f6f8; border-radius:6px; font-size:13.5px; }
+  .ib-steps .ib-os div + div { margin-top:4px; }
+  .ib-path { display:inline-block; margin-top:6px; padding:6px 12px; background:#0a2240; color:#fff; border-radius:6px; font-weight:600; font-size:14px; }
+  .ib-boxlink { display:inline-block; margin-top:8px; padding:7px 16px; background:#3cb878; color:#fff; border-radius:6px; font-weight:600; text-decoration:none; font-size:13.5px; }
+  .ib-boxlink:hover { background:#2ea366; }
+  .ib-boxlink:focus-visible, .pf-btn:focus-visible, .pf-tbtn:focus-visible { outline:3px solid #0a2240; outline-offset:2px; }
+  kbd { font-family:inherit; font-size:12.5px; background:#fff; border:1px solid #c0c8d4; border-bottom-width:2px; border-radius:4px; padding:0 5px; }
+  @media print { .ib-howto { display:none !important; } }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <details class="ib-howto" open>
+    <summary>How to complete and turn in this form <span class="ib-toggle"><span class="ib-hide">Hide steps</span><span class="ib-show">Show steps</span></span></summary>
+    <ol class="ib-steps">
+      <li><strong class="ib-step-title">Fill out the form below.</strong>
+        Fill this out once at the start of each quarter. One form per quarter. Your answers save automatically in this browser as you type, so you can close the tab and come back later.</li>
+      <li><strong class="ib-step-title">Click the "Save as PDF" button at the bottom of the page.</strong>
+        A print window opens. Nothing is printing; this is how the PDF gets made.</li>
+      <li><strong class="ib-step-title">Set the destination to "Save as PDF", then click Save.</strong>
+        <div class="ib-os">
+          <div><b>Chrome or Edge:</b> at the top right of the print window, find <b>Destination</b> (Chrome) or <b>Printer</b> (Edge). If it shows a printer name, click it and choose <b>Save as PDF</b>. Then click the blue <b>Save</b> button.</div>
+          <div><b>Mac Safari:</b> click the <b>PDF</b> menu at the bottom left of the print window and choose <b>Save as PDF</b>.</div>
+        </div></li>
+      <li><strong class="ib-step-title">Save it to your Downloads folder. Don't rename it.</strong>
+        A save window opens with the file already named for you, like <b id="ib-filename">Firstname_Lastname_Quarterly_Review_Q4-2026.pdf</b>. Click <b>Downloads</b> in the list on the left side of that window, then click <b>Save</b>.</li>
+      <li><strong class="ib-step-title">Find the PDF you just saved.</strong>
+        <div class="ib-os">
+          <div><b>Windows:</b> press <kbd>Windows key</kbd> + <kbd>E</kbd> to open File Explorer, then click <b>Downloads</b> on the left. Your PDF is at the top of the list under <b>Today</b>.</div>
+          <div><b>Mac:</b> open <b>Finder</b> and click <b>Downloads</b> in the sidebar. Your PDF is at the top.</div>
+        </div>
+        Leave this window open for the next step.</li>
+      <li><strong class="ib-step-title">Upload it to your folder in Box.</strong>
+        Open Box and go to this folder:<br>
+        <span class="ib-path" id="ib-box-path"></span><br>
+        Drag the PDF from your Downloads window into that Box folder. You're done when the file shows up in the folder's list.<br>
+        <a class="ib-boxlink" id="ib-box-link" href="https://app.box.com" target="_blank" rel="noopener">Open Box in a new tab</a></li>
+    </ol>
+  </details>
+
+  <div class="pf-toolbar">
+    <div class="pf-toolbar-status" id="toolbar-status">Your answers save automatically in this browser.</div>
+    <button class="pf-tbtn pf-tbtn-danger" type="button" onclick="clearForm()">Start a new form</button>
+  </div>
+
+  <div class="pf-header">
+    <div>
+      <div class="pf-logo">In <span>Balance</span> IT Solutions</div>
+      <div class="pf-logo-sub">inbalanceit.com</div>
+    </div>
+    <div>
+      <div class="pf-title">Quarterly Sales Review</div>
+      <div class="pf-title-sub">Prospects, Customer Growth, Vendor Teaming</div>
+    </div>
+  </div>
+
+  <div class="pf-meta">
+    <div class="pf-grid pf-grid-3">
+      <div class="pf-field">
+        <label class="pf-label" for="meta-rep">Your Name</label>
+        <select class="pf-input" id="meta-rep">
+          <option value="">Select your name</option>
+          <option>Kevin Morkin</option>
+          <option>Corey Dunteman</option>
+          <option>Steve Sprehe</option>
+          <option>Dan Wilson</option>
+          <option>Steve Schechtman</option>
+          <option>Jeff Parchomenko</option>
+          <option>Wally Lang</option>
+          <option value="Other">Other</option>
+        </select>
+        <input class="pf-input" type="text" id="meta-rep-other" placeholder="Your full name" aria-label="Your full name" style="display:none; margin-top:4px;">
+      </div>
+      <div class="pf-field"><label class="pf-label" for="meta-quarter">Quarter</label><select class="pf-input" id="meta-quarter"></select></div>
+      <div class="pf-field"><label class="pf-label" for="meta-date">Date Completed</label><input class="pf-input" type="date" id="meta-date"></div>
+    </div>
+  </div>
+
+  <div class="pf-body">
+<!-- 1. Top 3 Prospects -->
+    <div class="pf-section">
+      <div class="pf-section-header"><div class="pf-section-num">1</div><div class="pf-section-title">Top 3 Prospects for Conversion</div></div>
+      <table class="pf-table">
+        <thead><tr><th style="width:24px">#</th><th style="width:26%">Prospect Account</th><th style="width:24%">Decision Maker</th><th>Keys to Converting</th></tr></thead>
+        <tbody id="top-prospects-body"></tbody>
+      </table>
+
+      <div class="pf-subsection-title">Conversion Deep Dive <span style="font-weight:400;color:#8a95a3;font-size:11px;text-transform:none;letter-spacing:0;">— the 3 accounts above</span></div>
+      <div id="deal-deep-dive-body"></div>
+    </div>
+
+    <div class="pf-divider"></div>
+
+    <!-- 2. Customer Growth -->
+    <div class="pf-section">
+      <div class="pf-section-header"><div class="pf-section-num">2</div><div class="pf-section-title">Top Customer Growth &amp; Deeper Penetration</div></div>
+      <div class="pf-field" style="margin-bottom:10px;"><div class="pf-label">Account Under Review</div><input class="pf-input" type="text" id="cg-account"></div>
+      <table class="pf-table">
+        <thead><tr><th style="width:28%">Metric</th><th>Current</th><th>Prior Period</th><th>Target</th></tr></thead>
+        <tbody id="cg-metrics-body"></tbody>
+      </table>
+
+      <div class="pf-subsection-title">Whitespace Opportunities</div>
+      <table class="pf-table">
+        <thead><tr><th>Opportunity (product, division, site)</th><th style="width:14%">Est. Value</th><th style="width:16%">Relationship Owner</th><th>Next Action</th><th style="width:14%">Timing</th></tr></thead>
+        <tbody id="whitespace-body"></tbody>
+      </table>
+
+      <div class="pf-subsection-title">Your Current Relationship</div>
+      <div class="pf-grid pf-grid-2">
+        <div class="pf-field"><div class="pf-label">Executive Sponsor</div><input class="pf-input" type="text" id="rh-sponsor"></div>
+        <div class="pf-field"><div class="pf-label">Last Exec-Level Touch</div><input class="pf-input" type="text" id="rh-lasttouch"></div>
+        <div class="pf-field"><div class="pf-label">Renewal of Contract Date</div><input class="pf-input" type="date" id="rh-renewal"></div>
+        <div class="pf-field">
+          <div class="pf-label">Referral or Reference Opportunity?</div>
+          <div class="pf-yn-row">
+            <select class="pf-input" id="rh-referral-yn"><option value="">—</option><option>Yes</option><option>No</option></select>
+            <input class="pf-input" type="text" id="rh-referral-details" placeholder="Details">
+          </div>
+        </div>
+      </div>
+      <div class="pf-field"><div class="pf-label">Risk Signals (spend decline, support issues, competitor activity)</div><textarea class="pf-textarea" id="rh-risk"></textarea></div>
+    </div>
+
+    <div class="pf-divider"></div>
+
+    <!-- 3. Vendor and Partner Teaming -->
+    <div class="pf-section">
+      <div class="pf-section-header"><div class="pf-section-num">3</div><div class="pf-section-title">Vendor and Partner Teaming</div></div>
+      <table class="pf-table">
+        <thead><tr><th style="width:16%">Vendor / Partner</th><th style="width:14%">Their Rep</th><th>Deals We Are Teaming On</th><th style="width:12%">$ Influenced</th><th style="width:12%">Last Touch</th><th style="width:14%">Next Joint Activity</th></tr></thead>
+        <tbody id="vendor-teaming-body"></tbody>
+      </table>
+
+      <div class="pf-subsection-title">Deeper Engagement Plan</div>
+      <div class="pf-grid pf-grid-2">
+        <div class="pf-field"><div class="pf-label">Which vendor deserves more investment this quarter, and why</div><textarea class="pf-textarea" id="de-invest"></textarea></div>
+        <div class="pf-field"><div class="pf-label">What do they need from us (pipeline visibility, certifications, joint marketing, QBR)</div><textarea class="pf-textarea" id="de-theyneed"></textarea></div>
+        <div class="pf-field"><div class="pf-label">What do we need from them (leads, funding, technical resources, pricing, demo units)</div><textarea class="pf-textarea" id="de-weneed"></textarea></div>
+        <div class="pf-field"><div class="pf-label">Vendor programs, SPIFFs, or funds we are not currently using</div><textarea class="pf-textarea" id="de-programs"></textarea></div>
+      </div>
+      <div class="pf-grid pf-grid-2">
+        <div class="pf-field">
+          <div class="pf-label">Joint Account Planning Session Scheduled?</div>
+          <div class="pf-yn-row">
+            <select class="pf-input" id="de-planning-yn"><option value="">—</option><option>Yes</option><option>No</option></select>
+            <input class="pf-input" type="date" id="de-planning-date">
+          </div>
+        </div>
+        <div class="pf-field"><div class="pf-label">Key Commitment This Quarter</div><input class="pf-input" type="text" id="de-commitment"></div>
+      </div>
+    </div>
+
+    
+    <div class="pf-divider"></div>
+
+    <div class="pf-submit-bar">
+      <div class="pf-confidential">In Balance IT Solutions &nbsp;|&nbsp; inbalanceit.com</div>
+      <button class="pf-btn" type="button" onclick="saveAsPDF()">Save as PDF</button>
+    </div>
+  </div>
+
+  <p class="pf-note">Stuck? Scroll to the top of this page for step-by-step instructions.</p>
+
+</div>
+
+<div class="pf-toast" id="pf-toast" role="status" aria-live="polite"></div>
+
+<script>
+  /* =================================================================
+     EDIT THESE TWO LINES ONCE THE BOX FOLDERS ARE SET UP
+     BOX_FOLDER_PATH: the folder path reps should see in step 6
+     BOX_FOLDER_URL:  link to that folder (or https://app.box.com)
+     ================================================================= */
+  const BOX_FOLDER_PATH = 'All Files > Sales > Quarterly & Weekly Sales Reviews > Quarterly Reviews';
+  const BOX_FOLDER_URL  = 'https://inbalanceit.app.box.com/folder/426812255105';
+  // The quarter subfolder (e.g. "2026 Q4") is added automatically from the Quarter picked on the form.
+  // Create each new quarter's folder in Box before reps need it.
+
+  const STORAGE_KEY = 'ibit-quarterly-review-v1';
+
+  function updateBoxPath() {
+    const q = (document.getElementById('meta-quarter') && document.getElementById('meta-quarter').value) || '';
+    const parts = q.split(' ');   // "Q4 2026" -> folder "2026 Q4"
+    const folder = parts.length === 2 ? parts[1] + ' ' + parts[0] : '(this quarter)';
+    document.getElementById('ib-box-path').textContent = BOX_FOLDER_PATH + ' > ' + folder;
+  }
+  document.getElementById('ib-box-link').href = BOX_FOLDER_URL;
+
+  function val(id) { const el = document.getElementById(id); return el ? (el.value || '').trim() : ''; }
+
+  function showToast(msg, duration = 3200) {
+    const t = document.getElementById('pf-toast');
+    t.textContent = msg; t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), duration);
+  }
+
+  /* ---------- Quarter picker ---------- */
+  function quarterLabel(d) { return 'Q' + (Math.floor(d.getMonth() / 3) + 1) + ' ' + d.getFullYear(); }
+  function currentQuarter() { return quarterLabel(new Date()); }
+  (function buildQuarters() {
+    const sel = document.getElementById('meta-quarter');
+    const now = new Date();
+    for (let i = -1; i <= 3; i++) {
+      const d = new Date(now.getFullYear(), now.getMonth() + i * 3, 1);
+      const o = document.createElement('option'); o.textContent = quarterLabel(d); sel.appendChild(o);
+    }
+  })();
+
+/* ---------- Section 1: Top 3 Prospects ---------- */
+  (function buildTopProspects() {
+    const body = document.getElementById('top-prospects-body');
+    for (let i = 1; i <= 3; i++) {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td class="num-cell">${i}</td>
+        <td><input type="text" id="tp-${i}-account"></td>
+        <td><input type="text" id="tp-${i}-dm"></td>
+        <td><input type="text" id="tp-${i}-keystoconverting"></td>`;
+      body.appendChild(tr);
+    }
+  })();
+
+  /* ---------- Deal Deep Dive (3 priority deals) ---------- */
+  (function buildConversionDeepDive() {
+    const container = document.getElementById('deal-deep-dive-body');
+    for (let n = 1; n <= 3; n++) {
+      const block = document.createElement('div');
+      block.className = 'pf-deal-block';
+      block.innerHTML = `
+        <div class="pf-deal-block-title">Prospect ${n}</div>
+        <div class="pf-field" style="margin-bottom:8px;"><div class="pf-label">Prospect Account</div><input class="pf-input" type="text" id="dd-${n}-account"></div>
+        <div class="pf-grid pf-grid-2" style="margin-bottom:8px;">
+          <div class="pf-field"><div class="pf-label">Compelling Event / Why Now</div><textarea class="pf-textarea" id="dd-${n}-compelling"></textarea></div>
+          <div class="pf-field"><div class="pf-label">Business Pain Being Solved</div><textarea class="pf-textarea" id="dd-${n}-pain"></textarea></div>
+        </div>
+        <div class="pf-grid pf-grid-2" style="margin-bottom:8px;">
+          <div class="pf-field">
+            <div class="pf-label">Economic Buyer Identified &amp; Engaged?</div>
+            <div class="pf-yn-row">
+              <select class="pf-input" id="dd-${n}-buyer-yn"><option value="">—</option><option>Yes</option><option>No</option></select>
+              <input class="pf-input" type="text" id="dd-${n}-buyer-who" placeholder="Who">
+            </div>
+          </div>
+          <div class="pf-field">
+            <div class="pf-label">Decision Process &amp; Timeline Understood?</div>
+            <div class="pf-yn-row">
+              <select class="pf-input" id="dd-${n}-process-yn"><option value="">—</option><option>Yes</option><option>No</option></select>
+              <input class="pf-input" type="text" id="dd-${n}-process-notes" placeholder="Notes">
+            </div>
+          </div>
+        </div>
+        <div class="pf-grid pf-grid-2" style="margin-bottom:8px;">
+          <div class="pf-field"><div class="pf-label">Current Provider / Competition</div><textarea class="pf-textarea" id="dd-${n}-competition"></textarea></div>
+          <div class="pf-field"><div class="pf-label">Known Objections or Risks</div><textarea class="pf-textarea" id="dd-${n}-objections"></textarea></div>
+        </div>
+        <div class="pf-grid pf-grid-2">
+          <div class="pf-field"><div class="pf-label">What Must Be True This Quarter to Convert Them</div><textarea class="pf-textarea" id="dd-${n}-mustbetrue"></textarea></div>
+          <div class="pf-field"><div class="pf-label">Manager Help Needed</div><textarea class="pf-textarea" id="dd-${n}-managerhelp"></textarea></div>
+        </div>`;
+      container.appendChild(block);
+    }
+  })();
+
+  /* ---------- Section 2: Customer Growth ---------- */
+  const growthMetrics = [
+    { id: 'revenue', label: 'Revenue' },
+    { id: 'margin', label: 'Margin' },
+    { id: 'skus', label: 'Product Lines / SKUs Sold' },
+    { id: 'depts', label: 'Departments or Sites Covered' },
+    { id: 'contacts', label: 'Contacts Mapped' }
+  ];
+  (function buildGrowthMetrics() {
+    const body = document.getElementById('cg-metrics-body');
+    growthMetrics.forEach(m => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td class="row-label">${m.label}</td>
+        <td><input type="text" id="cg-${m.id}-current"></td>
+        <td><input type="text" id="cg-${m.id}-prior"></td>
+        <td><input type="text" id="cg-${m.id}-target"></td>`;
+      body.appendChild(tr);
+    });
+  })();
+
+  (function buildWhitespace() {
+    const body = document.getElementById('whitespace-body');
+    for (let i = 1; i <= 4; i++) {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><input type="text" id="ws-${i}-opportunity"></td>
+        <td><input type="text" id="ws-${i}-value" placeholder="$"></td>
+        <td><input type="text" id="ws-${i}-owner"></td>
+        <td><input type="text" id="ws-${i}-nextaction"></td>
+        <td><input type="text" id="ws-${i}-timing"></td>`;
+      body.appendChild(tr);
+    }
+  })();
+
+  /* ---------- Section 3: Vendor and Partner Teaming ---------- */
+  (function buildVendorTeaming() {
+    const body = document.getElementById('vendor-teaming-body');
+    for (let i = 1; i <= 4; i++) {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><input type="text" id="vt-${i}-vendor"></td>
+        <td><input type="text" id="vt-${i}-rep"></td>
+        <td><input type="text" id="vt-${i}-deals"></td>
+        <td><input type="text" id="vt-${i}-influenced" placeholder="$"></td>
+        <td><input type="text" id="vt-${i}-lasttouch"></td>
+        <td><input type="text" id="vt-${i}-nextactivity"></td>`;
+      body.appendChild(tr);
+    }
+  })();
+
+  
+
+  /* ---------- Name, file name preview ---------- */
+  function repName() { return val('meta-rep') === 'Other' ? val('meta-rep-other') : val('meta-rep'); }
+  function pdfName() {
+    const rep = (repName() || 'Firstname Lastname').replace(/\s+/g, '_').replace(/[^a-z0-9_]/gi, '');
+    const q = (val('meta-quarter') || currentQuarter()).replace(' ', '-');
+    return `${rep}_Quarterly_Review_${q}`;
+  }
+  function updateRepUI() {
+    updateBoxPath();
+    document.getElementById('meta-rep-other').style.display = val('meta-rep') === 'Other' ? 'block' : 'none';
+    if (repName()) document.getElementById('ib-filename').textContent = pdfName() + '.pdf';
+  }
+
+  /* ---------- Autosave in this browser ---------- */
+  function collectFormData() {
+    const data = {};
+    document.querySelectorAll('.page-wrap input[id], .page-wrap textarea[id], .page-wrap select[id]').forEach(el => {
+      data[el.id] = (el.type === 'checkbox') ? el.checked : el.value;
+    });
+    return data;
+  }
+  function applyFormData(data) {
+    Object.keys(data).forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (el.type === 'checkbox') el.checked = !!data[id]; else el.value = data[id];
+    });
+  }
+  let saveTimer;
+  function autosave() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(collectFormData()));
+        const s = document.getElementById('toolbar-status');
+        s.textContent = 'Saved in this browser at ' + new Date().toLocaleTimeString([], {hour:'numeric', minute:'2-digit'});
+        s.className = 'pf-toolbar-status saved';
+      } catch (e) { /* storage unavailable; form still works */ }
+    }, 400);
+  }
+  document.addEventListener('input', autosave);
+  document.addEventListener('change', e => { if (['meta-rep','meta-rep-other','meta-quarter'].includes(e.target.id)) updateRepUI(); autosave(); });
+  document.getElementById('meta-rep-other').addEventListener('input', updateRepUI);
+
+  function setDefaults() {
+    document.getElementById('meta-date').value = new Date().toISOString().split('T')[0];
+    document.getElementById('meta-quarter').value = currentQuarter();
+  }
+
+  (function restore() {
+    setDefaults();
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        applyFormData(JSON.parse(saved));
+        const s = document.getElementById('toolbar-status');
+        s.textContent = 'Your earlier answers were restored. Click "Start a new form" to begin a blank one.';
+        s.className = 'pf-toolbar-status loaded';
+      }
+    } catch (e) {}
+    updateRepUI();
+  })();
+
+  function clearForm() {
+    if (!confirm('Clear every answer and start a blank form? Make sure you already saved the PDF and uploaded it to Box.')) return;
+    document.querySelectorAll('.page-wrap input[id], .page-wrap textarea[id], .page-wrap select[id]').forEach(el => {
+      if (el.type === 'checkbox') el.checked = false; else el.value = '';
+    });
+    try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+    setDefaults();
+    updateRepUI();
+    const s = document.getElementById('toolbar-status');
+    s.textContent = 'New blank form started.'; s.className = 'pf-toolbar-status';
+    showToast('New blank form started');
+  }
+
+  /* ---------- Save as PDF (browser print dialog) ---------- */
+  function autoSizeTextareas() {
+    document.querySelectorAll('textarea').forEach(ta => {
+      ta.dataset.origHeight = ta.style.height || '';
+      ta.style.height = 'auto';
+      ta.style.height = ta.scrollHeight + 'px';
+    });
+  }
+  function restoreTextareas() {
+    document.querySelectorAll('textarea').forEach(ta => { ta.style.height = ta.dataset.origHeight || ''; });
+  }
+  function saveAsPDF() {
+    if (!repName()) { showToast('Choose your name at the top of the form first. It names the PDF file.'); document.getElementById('meta-rep').focus(); return; }
+    const originalTitle = document.title;
+    document.title = pdfName();   // browsers use the page title as the PDF file name
+    autoSizeTextareas();
+    window.print();
+    setTimeout(() => { restoreTextareas(); document.title = originalTitle; }, 800);
+  }
+</script>
+</body>
+</html>
