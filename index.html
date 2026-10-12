@@ -3,9 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Weekly 1:1 Sales Review — In Balance IT Solutions</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Sales Reviews | In Balance IT Solutions</title>
 <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -220,492 +218,49 @@
     .pf-grid-2, .pf-grid-3, .pf-grid-4 { grid-template-columns: 1fr 1fr; }
     .pf-header, .pf-meta, .pf-section { padding-left: 1.25rem; padding-right: 1.25rem; }
   }
+
+  /* Instructions panel */
+  .ib-howto { background:#fff; border:1px solid #d0d5db; border-left:5px solid #3cb878; border-radius:10px; margin-bottom:0.9rem; }
+  .ib-howto summary { cursor:pointer; list-style:none; padding:1rem 1.5rem; font-family:'Bitter',serif; font-size:16px; font-weight:600; color:#0a2240; display:flex; justify-content:space-between; align-items:center; }
+  .ib-howto summary::-webkit-details-marker { display:none; }
+  .ib-howto summary .ib-toggle { font-family:'Source Sans 3',sans-serif; font-size:13px; font-weight:600; color:#2e8a5c; }
+  .ib-howto[open] summary .ib-show { display:none; }
+  .ib-howto:not([open]) summary .ib-hide { display:none; }
+  .ib-howto summary:focus-visible { outline:3px solid #3cb878; outline-offset:2px; border-radius:8px; }
+  .ib-steps { list-style:none; counter-reset:step; padding:0 1.5rem 1.25rem; margin:0; }
+  .ib-steps li { counter-increment:step; position:relative; padding:0.75rem 0 0.75rem 2.6rem; border-top:1px solid #e8ecf0; line-height:1.55; font-size:14.5px; }
+  .ib-steps li::before { content:counter(step); position:absolute; left:0; top:0.8rem; width:28px; height:28px; border-radius:50%; background:#0a2240; color:#fff; font-family:'Bitter',serif; font-weight:600; font-size:13px; display:flex; align-items:center; justify-content:center; }
+  .ib-steps strong.ib-step-title { display:block; font-size:15px; color:#0a2240; margin-bottom:2px; }
+  .ib-steps .ib-os { margin-top:6px; padding:8px 12px; background:#f4f6f8; border-radius:6px; font-size:13.5px; }
+  .ib-steps .ib-os div + div { margin-top:4px; }
+  .ib-path { display:inline-block; margin-top:6px; padding:6px 12px; background:#0a2240; color:#fff; border-radius:6px; font-weight:600; font-size:14px; }
+  .ib-boxlink { display:inline-block; margin-top:8px; padding:7px 16px; background:#3cb878; color:#fff; border-radius:6px; font-weight:600; text-decoration:none; font-size:13.5px; }
+  .ib-boxlink:hover { background:#2ea366; }
+  .ib-boxlink:focus-visible, .pf-btn:focus-visible, .pf-tbtn:focus-visible { outline:3px solid #0a2240; outline-offset:2px; }
+  kbd { font-family:inherit; font-size:12.5px; background:#fff; border:1px solid #c0c8d4; border-bottom-width:2px; border-radius:4px; padding:0 5px; }
+  @media print { .ib-howto { display:none !important; } }
+
+  .ib-choices { display:grid; grid-template-columns:1fr 1fr; gap:1rem; padding:1.75rem 2.5rem 0; }
+  .ib-choice { display:block; border:1px solid #d0d5db; border-top:4px solid #3cb878; border-radius:8px; padding:1.25rem 1.4rem; text-decoration:none; color:#1a1a2e; }
+  .ib-choice:hover { border-color:#0a2240; border-top-color:#0a2240; background:#fafbfc; }
+  .ib-choice:focus-visible { outline:3px solid #0a2240; outline-offset:2px; }
+  .ib-choice h2 { font-family:'Bitter',serif; font-size:18px; color:#0a2240; margin-bottom:6px; }
+  .ib-choice p { font-size:14.5px; line-height:1.5; color:#45505f; }
+  @media (max-width:720px) { .ib-choices { grid-template-columns:1fr; padding:1.25rem; } }
 </style>
 </head>
 <body>
 <div class="page-wrap">
-
-  <div class="pf-toolbar">
-    <div class="pf-toolbar-left">
-      <button class="pf-tbtn pf-tbtn-outline" onclick="saveForm()">&#8595; Save Draft</button>
-      <button class="pf-tbtn pf-tbtn-outline" onclick="document.getElementById('load-input').click()">&#8593; Load Draft</button>
-      <input type="file" id="load-input" accept=".json" style="display:none" onchange="loadForm(event)">
-      <button class="pf-tbtn pf-tbtn-danger" onclick="clearForm()">&#10005; New Form</button>
-    </div>
-    <div class="pf-toolbar-status" id="toolbar-status">No draft loaded — fill out or load a saved draft</div>
-  </div>
-
   <div class="pf-header">
-    <div>
-      <div class="pf-logo">In <span>Balance</span> IT Solutions</div>
-      <div class="pf-logo-sub">inbalanceit.com</div>
-    </div>
-    <div>
-      <div class="pf-title">Weekly 1:1 Sales Review</div>
-      <div class="pf-title-sub">Prospects · Growth · Vendor Teaming · Goals · Coaching</div>
-    </div>
+    <div><div class="pf-logo">In <span>Balance</span> IT Solutions</div><div class="pf-logo-sub">inbalanceit.com</div></div>
+    <div><div class="pf-title">Sales Reviews</div><div class="pf-title-sub">Choose the form you need</div></div>
   </div>
-
-  <div class="pf-meta">
-    <div class="pf-grid pf-grid-3">
-      <div class="pf-field">
-        <div class="pf-label">Rep</div>
-        <select class="pf-input" id="meta-rep" onchange="document.getElementById('meta-rep-other').style.display = this.value === 'Other' ? 'block' : 'none';">
-          <option value="">— Select —</option>
-          <option>Kevin Morkin</option>
-          <option>Corey Dunteman</option>
-          <option>Steve Sprehe</option>
-          <option>Dan Wilson</option>
-          <option>Steve Schechtman</option>
-          <option>Jeff Parchomenko</option>
-          <option>Wally Lang</option>
-          <option value="Other">Other</option>
-        </select>
-        <input class="pf-input" type="text" id="meta-rep-other" placeholder="Rep name" style="display:none; margin-top:4px;">
-      </div>
-      <div class="pf-field"><div class="pf-label">Meeting Date</div><input class="pf-input" type="date" id="meta-date"></div>
-      <div class="pf-field"><div class="pf-label">Week / Period Covered</div><input class="pf-input" type="text" id="meta-week" placeholder="e.g. Sept 8–12"></div>
-    </div>
-  </div>
-
   <div class="pf-body">
-
-    <!-- 1. Top 3 Prospects -->
-    <div class="pf-section">
-      <div class="pf-section-header"><div class="pf-section-num">1</div><div class="pf-section-title">Top 3 Prospects for Conversion</div><div style="margin-left:auto;font-size:10px;font-weight:600;letter-spacing:0.8px;color:#fff;background:#3cb878;padding:3px 9px;border-radius:10px;text-transform:uppercase;">Quarterly</div></div>
-      <table class="pf-table">
-        <thead><tr><th style="width:24px">#</th><th style="width:26%">Prospect Account</th><th style="width:24%">Decision Maker</th><th>Keys to Converting</th></tr></thead>
-        <tbody id="top-prospects-body"></tbody>
-      </table>
-
-      <div class="pf-subsection-title">Conversion Deep Dive <span style="font-weight:400;color:#8a95a3;font-size:11px;text-transform:none;letter-spacing:0;">— the 3 accounts above</span></div>
-      <div id="deal-deep-dive-body"></div>
+    <div class="ib-choices">
+      <a class="ib-choice" href="weekly.html"><h2>Weekly 1:1 Review</h2><p>Fill out before every weekly 1:1 with Vince. Goals, accomplishments, blockers, and coaching.</p></a>
+      <a class="ib-choice" href="quarterly.html"><h2>Quarterly Review</h2><p>Fill out once at the start of each quarter. Top prospects, customer growth, and vendor teaming.</p></a>
     </div>
-
-    <div class="pf-divider"></div>
-
-    <!-- 2. Customer Growth -->
-    <div class="pf-section">
-      <div class="pf-section-header"><div class="pf-section-num">2</div><div class="pf-section-title">Top Customer Growth &amp; Deeper Penetration</div></div>
-      <div class="pf-field" style="margin-bottom:10px;"><div class="pf-label">Account Under Review</div><input class="pf-input" type="text" id="cg-account"></div>
-      <table class="pf-table">
-        <thead><tr><th style="width:28%">Metric</th><th>Current</th><th>Prior Period</th><th>Target</th></tr></thead>
-        <tbody id="cg-metrics-body"></tbody>
-      </table>
-
-      <div class="pf-subsection-title">Whitespace Opportunities</div>
-      <table class="pf-table">
-        <thead><tr><th>Opportunity (product, division, site)</th><th style="width:14%">Est. Value</th><th style="width:16%">Relationship Owner</th><th>Next Action</th><th style="width:14%">Timing</th></tr></thead>
-        <tbody id="whitespace-body"></tbody>
-      </table>
-
-      <div class="pf-subsection-title">Your Current Relationship</div>
-      <div class="pf-grid pf-grid-2">
-        <div class="pf-field"><div class="pf-label">Executive Sponsor</div><input class="pf-input" type="text" id="rh-sponsor"></div>
-        <div class="pf-field"><div class="pf-label">Last Exec-Level Touch</div><input class="pf-input" type="text" id="rh-lasttouch"></div>
-        <div class="pf-field"><div class="pf-label">Renewal of Contract Date</div><input class="pf-input" type="date" id="rh-renewal"></div>
-        <div class="pf-field">
-          <div class="pf-label">Referral or Reference Opportunity?</div>
-          <div class="pf-yn-row">
-            <select class="pf-input" id="rh-referral-yn"><option value="">—</option><option>Yes</option><option>No</option></select>
-            <input class="pf-input" type="text" id="rh-referral-details" placeholder="Details">
-          </div>
-        </div>
-      </div>
-      <div class="pf-field"><div class="pf-label">Risk Signals (spend decline, support issues, competitor activity)</div><textarea class="pf-textarea" id="rh-risk"></textarea></div>
-    </div>
-
-    <div class="pf-divider"></div>
-
-    <!-- 3. Vendor and Partner Teaming -->
-    <div class="pf-section">
-      <div class="pf-section-header"><div class="pf-section-num">3</div><div class="pf-section-title">Vendor and Partner Teaming</div></div>
-      <table class="pf-table">
-        <thead><tr><th style="width:16%">Vendor / Partner</th><th style="width:14%">Their Rep</th><th>Deals We Are Teaming On</th><th style="width:12%">$ Influenced</th><th style="width:12%">Last Touch</th><th style="width:14%">Next Joint Activity</th></tr></thead>
-        <tbody id="vendor-teaming-body"></tbody>
-      </table>
-
-      <div class="pf-subsection-title">Deeper Engagement Plan</div>
-      <div class="pf-grid pf-grid-2">
-        <div class="pf-field"><div class="pf-label">Which vendor deserves more investment this quarter, and why</div><textarea class="pf-textarea" id="de-invest"></textarea></div>
-        <div class="pf-field"><div class="pf-label">What do they need from us (pipeline visibility, certifications, joint marketing, QBR)</div><textarea class="pf-textarea" id="de-theyneed"></textarea></div>
-        <div class="pf-field"><div class="pf-label">What do we need from them (leads, funding, technical resources, pricing, demo units)</div><textarea class="pf-textarea" id="de-weneed"></textarea></div>
-        <div class="pf-field"><div class="pf-label">Vendor programs, SPIFFs, or funds we are not currently using</div><textarea class="pf-textarea" id="de-programs"></textarea></div>
-      </div>
-      <div class="pf-grid pf-grid-2">
-        <div class="pf-field">
-          <div class="pf-label">Joint Account Planning Session Scheduled?</div>
-          <div class="pf-yn-row">
-            <select class="pf-input" id="de-planning-yn"><option value="">—</option><option>Yes</option><option>No</option></select>
-            <input class="pf-input" type="date" id="de-planning-date">
-          </div>
-        </div>
-        <div class="pf-field"><div class="pf-label">Commitment Made This Week</div><input class="pf-input" type="text" id="de-commitment"></div>
-      </div>
-    </div>
-
-    <div class="pf-divider"></div>
-
-    <!-- 4. Weekly Goals -->
-    <div class="pf-section">
-      <div class="pf-section-header"><div class="pf-section-num">4</div><div class="pf-section-title">Weekly Goals</div></div>
-
-      <div class="pf-subsection-title">Last Week's Goals: Results</div>
-      <table class="pf-table">
-        <thead><tr><th>Goal</th><th style="width:13%">Target</th><th style="width:13%">Actual</th><th style="width:12%">Met?</th><th>If Missed, Why</th></tr></thead>
-        <tbody id="last-week-goals-body"></tbody>
-      </table>
-
-      <div class="pf-subsection-title">Activity Scorecard</div>
-      <table class="pf-table">
-        <thead><tr><th style="width:40%">Activity</th><th>Target</th><th>Actual</th></tr></thead>
-        <tbody id="activity-scorecard-body"></tbody>
-      </table>
-
-      <div class="pf-subsection-title">Next Week's Goals</div>
-      <table class="pf-table">
-        <thead><tr><th style="width:24px">#</th><th>Goal</th><th>Measure of Success</th><th style="width:15%">Due</th></tr></thead>
-        <tbody id="next-week-goals-body"></tbody>
-      </table>
-    </div>
-
-    <div class="pf-divider"></div>
-
-    <!-- 5. Big Accomplishments -->
-    <div class="pf-section">
-      <div class="pf-section-header"><div class="pf-section-num">5</div><div class="pf-section-title">Big Accomplishments This Week</div></div>
-      <div class="pf-grid" style="grid-template-columns:1fr;">
-        <div class="pf-field"><div class="pf-label">1</div><input class="pf-input" type="text" id="ba-1"></div>
-        <div class="pf-field"><div class="pf-label">2</div><input class="pf-input" type="text" id="ba-2"></div>
-        <div class="pf-field"><div class="pf-label">3</div><input class="pf-input" type="text" id="ba-3"></div>
-      </div>
-      <div class="pf-field" style="margin-top:4px;"><div class="pf-label">What made it work, so we can repeat it</div><textarea class="pf-textarea" id="ba-whatworked"></textarea></div>
-    </div>
-
-    <div class="pf-divider"></div>
-
-    <!-- 6. Blockers, Coaching, Actions -->
-    <div class="pf-section">
-      <div class="pf-section-header"><div class="pf-section-num">6</div><div class="pf-section-title">Blockers, Coaching, and Actions</div></div>
-
-      <div class="pf-grid pf-grid-2">
-        <div class="pf-field"><div class="pf-label">Blockers or Obstacles</div><textarea class="pf-textarea" id="bl-blockers"></textarea></div>
-        <div class="pf-field"><div class="pf-label">Support Needed from Manager</div><textarea class="pf-textarea" id="bl-support"></textarea></div>
-      </div>
-
-      <div class="pf-subsection-title">Coaching Focus This Week</div>
-      <div class="pf-grid pf-grid-3">
-        <div class="pf-field"><div class="pf-label">Skill or Behavior to Work On</div><textarea class="pf-textarea" id="co-skill"></textarea></div>
-        <div class="pf-field"><div class="pf-label">How I Will Practice It</div><textarea class="pf-textarea" id="co-practice"></textarea></div>
-        <div class="pf-field"><div class="pf-label">How I Will Know It Improved</div><textarea class="pf-textarea" id="co-know"></textarea></div>
-      </div>
-
-      <div class="pf-subsection-title">Action Items</div>
-      <table class="pf-table">
-        <thead><tr><th style="width:24px">#</th><th>Action</th><th style="width:16%">Due Date</th><th style="width:18%">Status</th></tr></thead>
-        <tbody id="action-items-body"></tbody>
-      </table>
-
-      <div class="pf-field" style="max-width:220px; margin-top:6px;"><div class="pf-label">Next 1:1 Date</div><input class="pf-input" type="date" id="next-1on1"></div>
-    </div>
-
-    <div class="pf-divider"></div>
-
-    <div class="pf-submit-bar">
-      <div class="pf-confidential">In Balance IT Solutions &nbsp;|&nbsp; inbalanceit.com</div>
-      <button class="pf-btn" id="submit-btn" onclick="saveAsPDF()">Save as PDF</button>
-    </div>
-
-  </div><!-- end pf-body -->
-
-  <p class="pf-note">"Save as PDF" opens your print dialog — choose <strong>Save as PDF</strong> as the destination, then drop the file into Box. Use "Save Draft" if you want an editable copy you can reload and change later.</p>
-
-</div><!-- end page-wrap -->
-
-<div class="pf-toast" id="pf-toast"></div>
-
-<script>
-  /* =========================================================
-     STEP 3 OF SETUP: paste your deployed Apps Script Web App
-     URL below (see the accompanying apps-script-backend.gs).
-     ========================================================= */
-  const SCRIPT_URL = 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
-
-  document.getElementById('meta-date').value = new Date().toISOString().split('T')[0];
-
-  function val(id) { const el = document.getElementById(id); return el ? (el.value || '').trim() : ''; }
-  function num(id) { return parseFloat(val(id).replace(/[^0-9.\-]/g, '')) || 0; }
-
-  function showToast(msg, duration = 3200) {
-    const t = document.getElementById('pf-toast');
-    t.textContent = msg; t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), duration);
-  }
-
-  /* ---------- Section 1: Top 3 Prospects ---------- */
-  (function buildTopProspects() {
-    const body = document.getElementById('top-prospects-body');
-    for (let i = 1; i <= 3; i++) {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td class="num-cell">${i}</td>
-        <td><input type="text" id="tp-${i}-account"></td>
-        <td><input type="text" id="tp-${i}-dm"></td>
-        <td><input type="text" id="tp-${i}-keystoconverting"></td>`;
-      body.appendChild(tr);
-    }
-  })();
-
-  /* ---------- Deal Deep Dive (3 priority deals) ---------- */
-  (function buildConversionDeepDive() {
-    const container = document.getElementById('deal-deep-dive-body');
-    for (let n = 1; n <= 3; n++) {
-      const block = document.createElement('div');
-      block.className = 'pf-deal-block';
-      block.innerHTML = `
-        <div class="pf-deal-block-title">Prospect ${n}</div>
-        <div class="pf-field" style="margin-bottom:8px;"><div class="pf-label">Prospect Account</div><input class="pf-input" type="text" id="dd-${n}-account"></div>
-        <div class="pf-grid pf-grid-2" style="margin-bottom:8px;">
-          <div class="pf-field"><div class="pf-label">Compelling Event / Why Now</div><textarea class="pf-textarea" id="dd-${n}-compelling"></textarea></div>
-          <div class="pf-field"><div class="pf-label">Business Pain Being Solved</div><textarea class="pf-textarea" id="dd-${n}-pain"></textarea></div>
-        </div>
-        <div class="pf-grid pf-grid-2" style="margin-bottom:8px;">
-          <div class="pf-field">
-            <div class="pf-label">Economic Buyer Identified &amp; Engaged?</div>
-            <div class="pf-yn-row">
-              <select class="pf-input" id="dd-${n}-buyer-yn"><option value="">—</option><option>Yes</option><option>No</option></select>
-              <input class="pf-input" type="text" id="dd-${n}-buyer-who" placeholder="Who">
-            </div>
-          </div>
-          <div class="pf-field">
-            <div class="pf-label">Decision Process &amp; Timeline Understood?</div>
-            <div class="pf-yn-row">
-              <select class="pf-input" id="dd-${n}-process-yn"><option value="">—</option><option>Yes</option><option>No</option></select>
-              <input class="pf-input" type="text" id="dd-${n}-process-notes" placeholder="Notes">
-            </div>
-          </div>
-        </div>
-        <div class="pf-grid pf-grid-2" style="margin-bottom:8px;">
-          <div class="pf-field"><div class="pf-label">Current Provider / Competition</div><textarea class="pf-textarea" id="dd-${n}-competition"></textarea></div>
-          <div class="pf-field"><div class="pf-label">Known Objections or Risks</div><textarea class="pf-textarea" id="dd-${n}-objections"></textarea></div>
-        </div>
-        <div class="pf-grid pf-grid-2">
-          <div class="pf-field"><div class="pf-label">What Must Be True This Quarter to Convert Them</div><textarea class="pf-textarea" id="dd-${n}-mustbetrue"></textarea></div>
-          <div class="pf-field"><div class="pf-label">Manager Help Needed</div><textarea class="pf-textarea" id="dd-${n}-managerhelp"></textarea></div>
-        </div>`;
-      container.appendChild(block);
-    }
-  })();
-
-  /* ---------- Section 2: Customer Growth ---------- */
-  const growthMetrics = [
-    { id: 'revenue', label: 'Revenue' },
-    { id: 'margin', label: 'Margin' },
-    { id: 'skus', label: 'Product Lines / SKUs Sold' },
-    { id: 'depts', label: 'Departments or Sites Covered' },
-    { id: 'contacts', label: 'Contacts Mapped' }
-  ];
-  (function buildGrowthMetrics() {
-    const body = document.getElementById('cg-metrics-body');
-    growthMetrics.forEach(m => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td class="row-label">${m.label}</td>
-        <td><input type="text" id="cg-${m.id}-current"></td>
-        <td><input type="text" id="cg-${m.id}-prior"></td>
-        <td><input type="text" id="cg-${m.id}-target"></td>`;
-      body.appendChild(tr);
-    });
-  })();
-
-  (function buildWhitespace() {
-    const body = document.getElementById('whitespace-body');
-    for (let i = 1; i <= 4; i++) {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td><input type="text" id="ws-${i}-opportunity"></td>
-        <td><input type="text" id="ws-${i}-value" placeholder="$"></td>
-        <td><input type="text" id="ws-${i}-owner"></td>
-        <td><input type="text" id="ws-${i}-nextaction"></td>
-        <td><input type="text" id="ws-${i}-timing"></td>`;
-      body.appendChild(tr);
-    }
-  })();
-
-  /* ---------- Section 3: Vendor and Partner Teaming ---------- */
-  (function buildVendorTeaming() {
-    const body = document.getElementById('vendor-teaming-body');
-    for (let i = 1; i <= 4; i++) {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td><input type="text" id="vt-${i}-vendor"></td>
-        <td><input type="text" id="vt-${i}-rep"></td>
-        <td><input type="text" id="vt-${i}-deals"></td>
-        <td><input type="text" id="vt-${i}-influenced" placeholder="$"></td>
-        <td><input type="text" id="vt-${i}-lasttouch"></td>
-        <td><input type="text" id="vt-${i}-nextactivity"></td>`;
-      body.appendChild(tr);
-    }
-  })();
-
-  /* ---------- Section 4: Weekly Goals ---------- */
-  (function buildLastWeekGoals() {
-    const body = document.getElementById('last-week-goals-body');
-    for (let i = 1; i <= 4; i++) {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td><input type="text" id="lw-${i}-goal"></td>
-        <td><input type="text" id="lw-${i}-target"></td>
-        <td><input type="text" id="lw-${i}-actual"></td>
-        <td>
-          <select id="lw-${i}-met"><option value="">—</option><option>Yes</option><option>No</option><option>Partial</option></select>
-        </td>
-        <td><input type="text" id="lw-${i}-whymissed"></td>`;
-      body.appendChild(tr);
-    }
-  })();
-
-  const scorecardActivities = [
-    { id: 'meetings', label: 'New Meetings Set' },
-    { id: 'discovery', label: 'Discovery Calls Held' },
-    { id: 'demos', label: 'Demos / Presentations' },
-    { id: 'proposals', label: 'Proposals Sent' },
-    { id: 'newopps', label: 'New Opportunities Created' },
-    { id: 'closed', label: 'Deals Closed' }
-  ];
-  (function buildActivityScorecard() {
-    const body = document.getElementById('activity-scorecard-body');
-    scorecardActivities.forEach(a => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td class="row-label">${a.label}</td>
-        <td><input type="text" id="as-${a.id}-target"></td>
-        <td><input type="text" id="as-${a.id}-actual"></td>`;
-      body.appendChild(tr);
-    });
-  })();
-
-  (function buildNextWeekGoals() {
-    const body = document.getElementById('next-week-goals-body');
-    for (let i = 1; i <= 3; i++) {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td class="num-cell">${i}</td>
-        <td><input type="text" id="nw-${i}-goal"></td>
-        <td><input type="text" id="nw-${i}-measure"></td>
-        <td><input type="date" id="nw-${i}-due"></td>`;
-      body.appendChild(tr);
-    }
-  })();
-
-  /* ---------- Section 6: Action Items ---------- */
-  (function buildActionItems() {
-    const body = document.getElementById('action-items-body');
-    for (let i = 1; i <= 5; i++) {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td class="num-cell">${i}</td>
-        <td><input type="text" id="ai-${i}-action"></td>
-        <td><input type="date" id="ai-${i}-due"></td>
-        <td>
-          <select id="ai-${i}-status">
-            <option value="">—</option><option>Not started</option><option>In progress</option><option>Done</option><option>Blocked</option>
-          </select>
-        </td>`;
-      body.appendChild(tr);
-    }
-  })();
-
-  /* ---------- Collect / apply / save / load ---------- */
-  function collectFormData() {
-    const data = {};
-    document.querySelectorAll('input[id], textarea[id], select[id]').forEach(el => {
-      data[el.id] = (el.type === 'checkbox') ? el.checked : el.value;
-    });
-    return data;
-  }
-  function applyFormData(data) {
-    Object.keys(data).forEach(id => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      if (el.type === 'checkbox') el.checked = !!data[id]; else el.value = data[id];
-    });
-    if (val('meta-rep') === 'Other') document.getElementById('meta-rep-other').style.display = 'block';
-  }
-
-  function saveForm() {
-    const data = collectFormData();
-    const rep = (data['meta-rep'] === 'Other' ? data['meta-rep-other'] : data['meta-rep']) || 'Rep';
-    const repSlug = rep.replace(/\s+/g, '_').replace(/[^a-z0-9_]/gi, '');
-    const date = data['meta-date'] || new Date().toISOString().split('T')[0];
-    const filename = `${repSlug}_Weekly_Review_${date}.json`;
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url; a.download = filename; a.click();
-    URL.revokeObjectURL(url);
-    const status = document.getElementById('toolbar-status');
-    status.textContent = `Draft saved: ${filename}`; status.className = 'pf-toolbar-status saved';
-    showToast(`✓ Draft saved as ${filename}`);
-  }
-
-  function loadForm(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = e => {
-      try {
-        applyFormData(JSON.parse(e.target.result));
-        const status = document.getElementById('toolbar-status');
-        status.textContent = `Loaded: ${file.name}`; status.className = 'pf-toolbar-status loaded';
-        showToast(`✓ Loaded ${file.name}`);
-      } catch (err) { showToast('Error: could not read that file.'); }
-    };
-    reader.readAsText(file);
-    event.target.value = '';
-  }
-
-  function clearForm() {
-    if (!confirm('Clear all fields and start a new form? This cannot be undone.')) return;
-    document.querySelectorAll('input[id], textarea[id], select[id]').forEach(el => {
-      if (el.type === 'checkbox') el.checked = false; else el.value = '';
-    });
-    document.getElementById('meta-rep-other').style.display = 'none';
-    document.getElementById('meta-date').value = new Date().toISOString().split('T')[0];
-    const status = document.getElementById('toolbar-status');
-    status.textContent = 'New form started'; status.className = 'pf-toolbar-status';
-    showToast('Form cleared — ready for new entry');
-  }
-
-  /* ---------- Save as PDF (browser print dialog) ---------- */
-  function autoSizeTextareas() {
-    document.querySelectorAll('textarea').forEach(ta => {
-      ta.dataset.origHeight = ta.style.height || '';
-      ta.style.height = 'auto';
-      ta.style.height = ta.scrollHeight + 'px';
-    });
-  }
-  function restoreTextareas() {
-    document.querySelectorAll('textarea').forEach(ta => {
-      ta.style.height = ta.dataset.origHeight || '';
-    });
-  }
-
-  function saveAsPDF() {
-    const rep = val('meta-rep') === 'Other' ? val('meta-rep-other') : val('meta-rep');
-    if (!rep) { showToast('Please select or enter a rep name first — it names the PDF file.'); return; }
-
-    // Browsers use the page title as the default PDF filename
-    const date = val('meta-date') || new Date().toISOString().split('T')[0];
-    const originalTitle = document.title;
-    document.title = `${rep.replace(/\s+/g, '_')}_Weekly_Review_${date}`;
-
-    autoSizeTextareas();
-    window.print();
-
-    setTimeout(() => { restoreTextareas(); document.title = originalTitle; }, 800);
-  }
-
-</script>
+  </div>
+</div>
 </body>
 </html>
