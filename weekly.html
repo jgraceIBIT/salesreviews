@@ -303,9 +303,8 @@
           <option>Steve Schechtman</option>
           <option>Jeff Parchomenko</option>
           <option>Wally Lang</option>
-          <option value="Other">Other</option>
+          <option>Stefania Stojakovic</option>
         </select>
-        <input class="pf-input" type="text" id="meta-rep-other" placeholder="Your full name" aria-label="Your full name" style="display:none; margin-top:4px;">
       </div>
       <div class="pf-field"><label class="pf-label" for="meta-date">Review for Friday</label><select class="pf-input" id="meta-date"></select></div>
     </div>
@@ -324,13 +323,13 @@
 
       <div class="pf-subsection-title">Activity Scorecard</div>
       <table class="pf-table">
-        <thead><tr><th style="width:40%">Activity</th><th>Target</th><th>Actual</th></tr></thead>
+        <thead><tr><th style="width:40%">Activity</th><th>Quarterly Target</th><th>Quarter to Date</th></tr></thead>
         <tbody id="activity-scorecard-body"></tbody>
       </table>
 
       <div class="pf-subsection-title">Next Week's Goals</div>
       <table class="pf-table">
-        <thead><tr><th style="width:24px">#</th><th>Goal</th><th>Measure of Success</th><th style="width:15%">Due</th></tr></thead>
+        <thead><tr><th style="width:24px">#</th><th>Goal</th><th>Measure of Success</th></tr></thead>
         <tbody id="next-week-goals-body"></tbody>
       </table>
     </div>
@@ -480,8 +479,7 @@
       tr.innerHTML = `
         <td class="num-cell">${i}</td>
         <td><input type="text" id="nw-${i}-goal"></td>
-        <td><input type="text" id="nw-${i}-measure"></td>
-        <td><input type="date" id="nw-${i}-due"></td>`;
+        <td><input type="text" id="nw-${i}-measure"></td>`;
       body.appendChild(tr);
     }
   })();
@@ -507,7 +505,7 @@
   
 
   /* ---------- Name, file name preview ---------- */
-  function repName() { return val('meta-rep') === 'Other' ? val('meta-rep-other') : val('meta-rep'); }
+  function repName() { return val('meta-rep'); }
   function pdfName() {
     const rep = (repName() || 'Firstname Lastname').replace(/\s+/g, '_').replace(/[^a-z0-9_]/gi, '');
     const date = val('meta-date') || 'YYYY-MM-DD';
@@ -515,7 +513,6 @@
   }
   function updateRepUI() {
     updateBoxPath();
-    document.getElementById('meta-rep-other').style.display = val('meta-rep') === 'Other' ? 'block' : 'none';
     document.getElementById('ib-filename').textContent = (repName() ? pdfName() : 'Firstname_Lastname_Weekly_Review_' + (val('meta-date') || '2026-10-16')) + '.pdf';
   }
 
@@ -547,8 +544,7 @@
     }, 400);
   }
   document.addEventListener('input', autosave);
-  document.addEventListener('change', e => { if (['meta-rep','meta-rep-other','meta-date'].includes(e.target.id)) updateRepUI(); autosave(); });
-  document.getElementById('meta-rep-other').addEventListener('input', updateRepUI);
+  document.addEventListener('change', e => { if (['meta-rep','meta-date'].includes(e.target.id)) updateRepUI(); autosave(); });
 
   function setDefaults() {
     document.getElementById('meta-date').value = upcomingFriday();

@@ -303,9 +303,8 @@
           <option>Steve Schechtman</option>
           <option>Jeff Parchomenko</option>
           <option>Wally Lang</option>
-          <option value="Other">Other</option>
+          <option>Stefania Stojakovic</option>
         </select>
-        <input class="pf-input" type="text" id="meta-rep-other" placeholder="Your full name" aria-label="Your full name" style="display:none; margin-top:4px;">
       </div>
       <div class="pf-field"><label class="pf-label" for="meta-quarter">Quarter</label><select class="pf-input" id="meta-quarter"></select></div>
       <div class="pf-field"><label class="pf-label" for="meta-date">Date Completed</label><input class="pf-input" type="date" id="meta-date"></div>
@@ -321,7 +320,7 @@
         <tbody id="top-prospects-body"></tbody>
       </table>
 
-      <div class="pf-subsection-title">Conversion Deep Dive <span style="font-weight:400;color:#8a95a3;font-size:11px;text-transform:none;letter-spacing:0;">— the 3 accounts above</span></div>
+      <div class="pf-subsection-title">Conversion Deep Dive <span style="font-weight:400;color:#8a95a3;font-size:11px;text-transform:none;letter-spacing:0;">(the 3 accounts above)</span></div>
       <div id="deal-deep-dive-body"></div>
     </div>
 
@@ -332,7 +331,7 @@
       <div class="pf-section-header"><div class="pf-section-num">2</div><div class="pf-section-title">Top Customer Growth &amp; Deeper Penetration</div></div>
       <div class="pf-field" style="margin-bottom:10px;"><div class="pf-label">Account Under Review</div><input class="pf-input" type="text" id="cg-account"></div>
       <table class="pf-table">
-        <thead><tr><th style="width:28%">Metric</th><th>Current</th><th>Prior Period</th><th>Target</th></tr></thead>
+        <thead><tr><th style="width:28%">Metric</th><th>Current</th><th>Prior Quarter</th><th>Target</th></tr></thead>
         <tbody id="cg-metrics-body"></tbody>
       </table>
 
@@ -552,7 +551,7 @@
   
 
   /* ---------- Name, file name preview ---------- */
-  function repName() { return val('meta-rep') === 'Other' ? val('meta-rep-other') : val('meta-rep'); }
+  function repName() { return val('meta-rep'); }
   function pdfName() {
     const rep = (repName() || 'Firstname Lastname').replace(/\s+/g, '_').replace(/[^a-z0-9_]/gi, '');
     const q = (val('meta-quarter') || currentQuarter()).replace(' ', '-');
@@ -560,7 +559,6 @@
   }
   function updateRepUI() {
     updateBoxPath();
-    document.getElementById('meta-rep-other').style.display = val('meta-rep') === 'Other' ? 'block' : 'none';
     if (repName()) document.getElementById('ib-filename').textContent = pdfName() + '.pdf';
   }
 
@@ -592,8 +590,7 @@
     }, 400);
   }
   document.addEventListener('input', autosave);
-  document.addEventListener('change', e => { if (['meta-rep','meta-rep-other','meta-quarter'].includes(e.target.id)) updateRepUI(); autosave(); });
-  document.getElementById('meta-rep-other').addEventListener('input', updateRepUI);
+  document.addEventListener('change', e => { if (['meta-rep','meta-quarter'].includes(e.target.id)) updateRepUI(); autosave(); });
 
   function setDefaults() {
     document.getElementById('meta-date').value = new Date().toISOString().split('T')[0];
